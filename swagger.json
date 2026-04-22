@@ -1,0 +1,2430 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "E-Commerce Integrator API",
+    "description": "Aplicação de integração entre sistemas iBR e E-Commerce",
+    "contact": {
+      "name": "Time de desenvolvimento",
+      "url": "https://www.ibrsoftweb.com.br/contato",
+      "email": "contato@ibrsoft.com.br"
+    },
+    "version": "v1",
+    "x-logo": {
+      "url": "https://files-ibr-desmonte.s3.amazonaws.com/CompanyLogo/2024-03-21/c734e2e4-bcd2-462f-b06a-d3e781103bca.jpg",
+      "altText": "IBR Logo",
+      "href": "https://www.ibrsoftweb.com.br/contato"
+    }
+  },
+  "paths": {
+    "/api/v1/ecommerce": {
+      "post": {
+        "tags": [
+          "ECommerce"
+        ],
+        "summary": "Cria um novo recurso de E-Commerce no sistema IBR",
+        "description": "Realiza o cadastro do E-Commerce",
+        "operationId": "ECommerceController_CreateEcommerce",
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Recurso criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/external/status": {
+      "put": {
+        "tags": [
+          "ExternalPublication"
+        ],
+        "summary": "Altera o status de uma publicação",
+        "description": "Este endpoint permite alterar o status de uma publicação, informando o ID da publicação e o novo status.",
+        "operationId": "ChangePublicationStatus",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "header",
+            "description": "ID da publicação para a qual o status será alterado.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "status",
+            "in": "header",
+            "description": "Novo status a ser atribuído à publicação.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ibr.Core.Enums.EPublicationStatusEcom"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status da publicação alterado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao alterar o status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/external": {
+      "get": {
+        "tags": [
+          "ExternalPublication"
+        ],
+        "summary": "Consulta de publicações",
+        "description": "Consulta as publicações",
+        "operationId": "PublicationController_ListPublications",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "query",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de publicações",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.FilterPublicationQueryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/notification/missed": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Consulta de notificações perdidas",
+        "description": "Consulta as notificações perdidas",
+        "operationId": "NotificationController_ListMissedNotifications",
+        "parameters": [
+          {
+            "name": "confirm",
+            "in": "query",
+            "description": "Confirma recebimento da notificação após consulta",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Quantidade de registros no retorno",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Página atual de leitura",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Lista de notificações perdidas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.FilterMissedNotificationQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Application": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/notification/requeue": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Reenfileirar notificações de publicações",
+        "description": "Cria novas notificações para as publicações informadas",
+        "operationId": "NotificationController_RequeuePublicationNotifications",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsCommand"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Notificações reenfileiradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Application": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Nova venda",
+        "description": "Informa os dados de uma nova venda realizada",
+        "operationId": "OrderController_CreateOrder",
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "A informação foi aceita e será processada de forma assíncrona",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Application": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/order/cancel": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Cancelar venda",
+        "description": "Informa os dados da venda a ser cancelada",
+        "operationId": "OrderController_CancelOrder",
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "A informação foi aceita e será processada de forma assíncrona",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Application": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/order/{orderId}/aftersale/customer/message": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Pós vendas - Mensagem do cliente",
+        "description": "Mensagem enviada pelo cliente",
+        "operationId": "OrderController_AfterSaleCustomerMessage",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Identificador do Pedido",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication": {
+      "get": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Consulta de publicações",
+        "description": "Consulta as publicações",
+        "operationId": "PublicationController_ListPublications",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Data da publicação - inicial",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Data da publicação - final",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "globalFilter",
+            "in": "query",
+            "description": "Filtro",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aspNetUserId",
+            "in": "query",
+            "description": "Usuário",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Quantidade de registros no retorno",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Página atual de leitura",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "searchLink",
+            "in": "query",
+            "description": "Se a busca deve trazer também o url da publicação.",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Lista de publicações",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.FilterPublicationQueryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/{id}": {
+      "get": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Obter publicação",
+        "description": "Obter publicação por ID",
+        "operationId": "PublicationController_FindPublication",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Publicação localizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.FindPublicationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "None": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/publication/bulk": {
+      "post": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Obter publicações em massa",
+        "description": "Retorna publicações a partir de uma lista de IDs",
+        "operationId": "PublicationController_FindPublicationsBulk",
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.BulkPublicationRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.BulkPublicationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.BulkPublicationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.BulkPublicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Lista de publicações",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.BulkFindPublicationItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/{publicationId}/question": {
+      "post": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Nova pergunta feita em uma publicação",
+        "description": "Envia uma pergunta referente à um anúncio",
+        "operationId": "PublicationController_SendQuestion",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "path",
+            "description": "Identificador da publicação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/{publicationId}/pause": {
+      "put": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Pausa publicação",
+        "description": "Atualiza status da publicação para pausada",
+        "operationId": "PublicationController_PausePublication",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "path",
+            "description": "Identificador da publicação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": { }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/{publicationId}/active": {
+      "put": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Ativa publicação",
+        "description": "Atualiza status da publicação para ativa",
+        "operationId": "PublicationController_ActivePublication",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "path",
+            "description": "Identificador da publicação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": { }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/publication/{publicationId}/close": {
+      "put": {
+        "tags": [
+          "Publication"
+        ],
+        "summary": "Finaliza publicação",
+        "description": "Atualiza status da publicação para finalizada",
+        "operationId": "PublicationController_ClosePublication",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "path",
+            "description": "Identificador da publicação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Requisição não será processada devido à um erro do cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cliente não possuí credenciais de autenticação válidas para o recurso solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": { }
+            }
+          }
+        }
+      }
+    },
+    "/publication/{publicationId}/question/{questionId}/answer": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "summary": "Publicação - Resposta de Pergunta",
+        "description": "Envia a resposta feita pelo sistema IBR de uma pergunta ao E-Commerce",
+        "operationId": "WebhookController_PublicationQuestion",
+        "parameters": [
+          {
+            "name": "publicationId",
+            "in": "path",
+            "description": "Id da publicação relacionada",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Id da pergunta relacionada",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Informação recebida com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/{orderId}/aftersale/agent/message": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "summary": "Pós vendas - Mensagem do Agente de Pós vendas",
+        "description": "Envia ao E-Commerce a mensage do agente de pós vendas",
+        "operationId": "WebhookController_AfterSaleAgentMessage",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados da mensagem",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Informação recebida com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Ibr.Core.Enums.EPublicationStatusEcom": {
+        "enum": [
+          "PROCESSING",
+          "ACTIVE",
+          "PAUSED",
+          "CLOSED"
+        ],
+        "type": "string"
+      },
+      "Ibr.Core.Enums.ModalidadeFrete": {
+        "enum": [
+          "ContaDoEmissor",
+          "ContaDoDestinatario",
+          "ContaDeTerceiros",
+          "SemFrete"
+        ],
+        "type": "string"
+      },
+      "Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageRequest": {
+        "required": [
+          "Message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "description": "Mensagem enviada pelo agente de pós vendas",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.AfterSalesAgentMessageRequestResponse+AfterSalesAgentMessageResponse": {
+        "required": [
+          "Id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "description": "Identificador da mensagem cadastrada no E-Commerce",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceRequest": {
+        "required": [
+          "Token",
+          "Url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "title": "Url",
+            "type": "string",
+            "description": "URL de acesso à API do E-Commerce",
+            "format": "absolute uri",
+            "nullable": true
+          },
+          "token": {
+            "title": "Token",
+            "type": "string",
+            "description": "Token fixo de autenticação",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.ECommerce.CreateECommerceResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.AddressDto": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "title": "Street",
+            "type": "string",
+            "description": "Rua",
+            "format": "string",
+            "nullable": true
+          },
+          "neighborhood": {
+            "title": "Neighborhood",
+            "type": "string",
+            "description": "Bairro",
+            "format": "string",
+            "nullable": true
+          },
+          "number": {
+            "title": "Number",
+            "type": "string",
+            "description": "Número",
+            "format": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "title": "ZipCode",
+            "type": "string",
+            "description": "CEP",
+            "format": "string",
+            "nullable": true
+          },
+          "ibgeCode": {
+            "title": "IBGECode",
+            "type": "integer",
+            "description": "Código identificador do IBGE",
+            "format": "int",
+            "nullable": true
+          },
+          "state": {
+            "title": "State",
+            "type": "string",
+            "description": "UF",
+            "format": "string",
+            "nullable": true
+          },
+          "city": {
+            "title": "City",
+            "type": "string",
+            "description": "Cidade",
+            "format": "string",
+            "nullable": true
+          },
+          "complement": {
+            "title": "Complement",
+            "type": "string",
+            "description": "Complemento",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageRequest": {
+        "required": [
+          "Message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "description": "Mensagem enviada pelo cliente no pós vendas",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.AfterSaleCustomerSendMessageResponse": {
+        "required": [
+          "Id"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer",
+            "description": "Identificador do pedido",
+            "format": "int"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.CancelOrderResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer",
+            "description": "Identificador do pedido",
+            "format": "int"
+          },
+          "publication": {
+            "title": "Publication",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.PublicationDto"
+            },
+            "description": "Dados da publicação relacionada",
+            "format": "object",
+            "nullable": true
+          },
+          "discount": {
+            "title": "Discount",
+            "type": "number",
+            "description": "Desconto total do pedido (nível pedido). Único desconto considerado no cálculo do total; desconto por item foi descontinuado.",
+            "format": "decimal"
+          },
+          "shippingCost": {
+            "title": "ShippingCost",
+            "type": "number",
+            "description": "Custo de entrega aplicado no pedido",
+            "format": "decimal"
+          },
+          "insuranceCost": {
+            "title": "InsuranceCost",
+            "type": "number",
+            "description": "Custo do seguro aplicado no pedido",
+            "format": "decimal"
+          },
+          "extraCharge": {
+            "title": "ExtraCharge",
+            "type": "number",
+            "description": "Juros adicionais",
+            "format": "decimal"
+          },
+          "paymentMethod": {
+            "title": "PaymentMethod",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.PaymentMethodDto"
+            },
+            "description": "Método de pagamento",
+            "format": "object",
+            "nullable": true
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.CustomerDto"
+          },
+          "freight": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.FreightDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.CreateOrderResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.CustomerDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "description": "Nome",
+            "format": "string",
+            "nullable": true
+          },
+          "document": {
+            "title": "Document",
+            "type": "string",
+            "description": "Número do documento",
+            "format": "string",
+            "nullable": true
+          },
+          "email": {
+            "title": "Email",
+            "type": "string",
+            "description": "Endereço de e-mail",
+            "format": "string",
+            "nullable": true
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string",
+            "description": "Número de telefone",
+            "format": "string",
+            "nullable": true
+          },
+          "cellPhone": {
+            "title": "CellPhone",
+            "type": "string",
+            "description": "Número de celular",
+            "format": "string",
+            "nullable": true
+          },
+          "address": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.AddressDto"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Api.Models.Commands.Order.DeliveryDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.DeliveryDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "description": "Nome para entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "document": {
+            "title": "Document",
+            "type": "string",
+            "description": "Documento para entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "rgIe": {
+            "title": "RgIe",
+            "type": "string",
+            "description": "RG/IE para entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string",
+            "description": "Telefone para entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "title": "ZipCode",
+            "type": "string",
+            "description": "CEP de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "state": {
+            "title": "State",
+            "type": "string",
+            "description": "UF de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "city": {
+            "title": "City",
+            "type": "string",
+            "description": "Cidade de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "address": {
+            "title": "Address",
+            "type": "string",
+            "description": "Endereço de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "neighborhood": {
+            "title": "Neighborhood",
+            "type": "string",
+            "description": "Bairro de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "number": {
+            "title": "Number",
+            "type": "string",
+            "description": "Número de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "complement": {
+            "title": "Complement",
+            "type": "string",
+            "description": "Complemento de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string",
+            "description": "Referência de entrega",
+            "format": "string",
+            "nullable": true
+          },
+          "ibge": {
+            "title": "Ibge",
+            "type": "string",
+            "description": "IBGE de entrega",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.FreightDto": {
+        "type": "object",
+        "properties": {
+          "modalidade": {
+            "$ref": "#/components/schemas/Ibr.Core.Enums.ModalidadeFrete"
+          },
+          "cpfCnpj": {
+            "title": "CpfCnpj",
+            "type": "string",
+            "description": "Documento do responsável ou transportadora",
+            "format": "string",
+            "nullable": true
+          },
+          "inscricaoEstadual": {
+            "title": "InscricaoEstadual",
+            "type": "string",
+            "description": "Inscrição estadual do responsável",
+            "format": "string",
+            "nullable": true
+          },
+          "razaoSocial": {
+            "title": "RazaoSocial",
+            "type": "string",
+            "description": "Razão social do responsável",
+            "format": "string",
+            "nullable": true
+          },
+          "logradouro": {
+            "title": "Logradouro",
+            "type": "string",
+            "description": "Logradouro do responsável",
+            "format": "string",
+            "nullable": true
+          },
+          "municipio": {
+            "title": "Municipio",
+            "type": "string",
+            "description": "Município do responsável",
+            "format": "string",
+            "nullable": true
+          },
+          "uf": {
+            "title": "Uf",
+            "type": "string",
+            "description": "UF do responsável",
+            "format": "string",
+            "nullable": true
+          },
+          "placa": {
+            "title": "Placa",
+            "type": "string",
+            "description": "Placa do veículo",
+            "format": "string",
+            "nullable": true
+          },
+          "ufVeiculo": {
+            "title": "UfVeiculo",
+            "type": "string",
+            "description": "UF do veículo",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.PaymentMethodDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string",
+            "description": "Código do método de pagamento",
+            "format": "string",
+            "nullable": true
+          },
+          "flag": {
+            "title": "Flag",
+            "type": "string",
+            "description": "Bandeira do método de pagamento",
+            "format": "string",
+            "nullable": true
+          },
+          "amount": {
+            "title": "Amount",
+            "type": "number",
+            "description": "Valor",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Order.PublicationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "description": "Id da publicação",
+            "format": "uuid"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "integer",
+            "description": "Quantidade do item",
+            "format": "int"
+          },
+          "amount": {
+            "title": "Amount",
+            "type": "number",
+            "description": "Valor",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Publications.BulkPublicationRequest": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionRequest": {
+        "required": [
+          "Question",
+          "QuestionId"
+        ],
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "title": "QuestionId",
+            "type": "string",
+            "description": "Identificador da pergunta",
+            "format": "uuid"
+          },
+          "question": {
+            "title": "Question",
+            "type": "string",
+            "description": "Pergunta realizada",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.Commands.Publications.CreateQuestionResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerRequest": {
+        "required": [
+          "Answer"
+        ],
+        "type": "object",
+        "properties": {
+          "answer": {
+            "title": "Answer",
+            "type": "string",
+            "description": "Mensagem de resposta",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Api.Models.PublicationQuestionRequestResponse+PublicationQuestionAnswerResponse": {
+        "required": [
+          "Id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "description": "Identificador da resposta cadastrada no E-Commerce",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.CommandResponses.Errors.ValidationError": {
+        "type": "object",
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "propertyName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsCommand": {
+        "type": "object",
+        "properties": {
+          "publicationIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Commands.Notifications.RequeuePublicationNotificationsResponse": {
+        "type": "object",
+        "properties": {
+          "requeuedPublications": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "notFoundPublications": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "publicationsOutsideApplication": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Dtos.Product": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "availableQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "discount": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "warranty": {
+            "type": "string",
+            "nullable": true
+          },
+          "measures": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.ProductMeasures"
+          },
+          "productMeasures": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.ProductPhysicalMeasures"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.ProductAttribute"
+            },
+            "nullable": true
+          },
+          "compatibilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.ProductCompatibility"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Dtos.ProductAttribute": {
+        "type": "object",
+        "properties": {
+          "nameId": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Dtos.ProductCompatibility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Dtos.ProductMeasures": {
+        "type": "object",
+        "properties": {
+          "packageHeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageWidth": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageLength": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageWeight": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Dtos.ProductPhysicalMeasures": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "type": "string",
+            "nullable": true
+          },
+          "width": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.BulkFindPublicationItem": {
+        "type": "object",
+        "properties": {
+          "publicationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.Product"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.FilterMissedNotificationQueryResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.MissedNotificationResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.FilterPublicationQueryResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.PublicationResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.FindPublicationResponse": {
+        "type": "object",
+        "properties": {
+          "publicationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Dtos.Product"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.MissedNotificationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "resource": {
+            "type": "string",
+            "nullable": true
+          },
+          "topic": {
+            "type": "string",
+            "nullable": true
+          },
+          "attempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.PublicationActionsResponse": {
+        "type": "object",
+        "properties": {
+          "canBeEdited": {
+            "type": "boolean"
+          },
+          "canBePaused": {
+            "type": "boolean"
+          },
+          "canBeRetomed": {
+            "type": "boolean"
+          },
+          "canBeClosed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ibr.ECommerce.Domain.Queries.Responses.PublicationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "actions": {
+            "$ref": "#/components/schemas/Ibr.ECommerce.Domain.Queries.Responses.PublicationActionsResponse"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.AspNetCore.Mvc.ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Input **_ONLY_** JWT Bearer token below: \n\n Example: \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX...\" \n\n Name: Authorization \n\n in: Header",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      },
+      "Application": {
+        "type": "apiKey",
+        "description": "Input **_ONLY_** ApplicationId below: \n\n Example: \"4b86c2ae-bde8-4b77-ac56-dfbe75313806\"",
+        "name": "Application",
+        "in": "header"
+      },
+      "None": {
+        "type": "apiKey",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "ECommerce",
+      "description": "Definição das rotas para gerenciamento do recurso E-Commerce"
+    },
+    {
+      "name": "Notification",
+      "description": "Definição das rotas para gerenciamento de publicações"
+    },
+    {
+      "name": "Order",
+      "description": "Definição das rotas para gerenciamento do recurso Pedido"
+    },
+    {
+      "name": "Publication",
+      "description": "Definição das rotas para gerenciamento de publicações"
+    },
+    {
+      "name": "Webhook",
+      "description": "Definição de todas as chamadas feitas à partir da IBR Api para o E-Commerce"
+    }
+  ]
+}

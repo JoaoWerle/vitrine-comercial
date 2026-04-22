@@ -1,0 +1,106 @@
+[
+  {
+    "productId": "mnyo319ta67d1",
+    "sku": "RG-TA67D1",
+    "title": "Conjunto Marrom",
+    "price": 289.9,
+    "description": "Hello Summer",
+    "category": "Meninos",
+    "condition": "Coleção 2026",
+    "availableQuantity": 9,
+    "images": [
+      "/img/1776173906222-441640363-conjunto-marrom-masc.webp"
+    ]
+  },
+  {
+    "productId": "mnyo46upem0jz",
+    "sku": "RG-PEM0JZ",
+    "title": "Conjunto Branco",
+    "price": 289.9,
+    "description": "Grow",
+    "category": "Meninos",
+    "condition": "Coleção 2026",
+    "availableQuantity": 12,
+    "images": [
+      "/img/1776173960111-263105211-conjunto-branco-masc.webp"
+    ]
+  },
+  {
+    "productId": "mnyo5wl0yye52",
+    "sku": "RG-0YYE52",
+    "title": "Conjunto Amarelo",
+    "price": 249.9,
+    "description": "QvimByBaby",
+    "category": "Meninas",
+    "condition": "Coleção 2026",
+    "availableQuantity": 10,
+    "images": [
+      "/img/1776174040115-722525908-conjunto-amarelo.webp"
+    ]
+  },
+  {
+    "productId": "mnyo7pnfj1ukv",
+    "sku": "RG-FJ1UKV",
+    "title": "Conjunto Morango",
+    "price": 189.9,
+    "description": "Conjunto Morango luxo",
+    "category": "Bebês",
+    "condition": "Coleção 2026",
+    "availableQuantity": 19,
+    "images": [
+      "/img/1776174124442-700708622-conjunto-rosa.webp"
+    ]
+  },
+  {
+    "productId": "mnyo97aiu67cw",
+    "sku": "RG-IU67CW",
+    "title": "Conjunto Rosa",
+    "price": 189.9,
+    "description": "Rosa com flores brancas",
+    "category": "Bebês",
+    "condition": "Coleção 2026",
+    "availableQuantity": 7,
+    "images": [
+      "/img/1776174193961-517488681-conjunto-rosa-com-flor.webp"
+    ]
+  },
+  {
+    "productId": "mnyoc4vjv7znx",
+    "sku": "RG-JV7ZNX",
+    "title": "Copo Infantil",
+    "price": 89.9,
+    "description": "Copo infantil 180ml",
+    "category": "Acessórios",
+    "condition": "Novidade",
+    "availableQuantity": 30,
+    "images": [
+      "/img/1776174330798-829978052-copinho.jpg"
+    ]
+  },
+  {
+    "productId": "mnyocv12ya7bl",
+    "sku": "RG-2YA7BL",
+    "title": "Mochila Infantil",
+    "price": 179.9,
+    "description": "Mochila infantil linda",
+    "category": "Acessórios",
+    "condition": "Novidade",
+    "availableQuantity": 15,
+    "images": [
+      "/img/1776174364693-525007909-mochila.jpg"
+    ]
+  },
+  {
+    "productId": "mnyody14m5vjd",
+    "sku": "RG-4M5VJD",
+    "title": "Kit Mochila + Copo",
+    "price": 249.9,
+    "description": "Kit copo 180ml + mochila",
+    "category": "Ofertas",
+    "condition": "Novidade",
+    "availableQuantity": 10,
+    "images": [
+      "/img/1776174415238-114372421-kit-copo-mochila.jpg"
+    ]
+  }
+]

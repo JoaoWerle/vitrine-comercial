@@ -1,220 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roda Gigante | Moda Infantil</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Vitrine Comercial | Plataforma Profissional</title>
+    <meta property="og:title" id="og-title" content="Vitrine Comercial | Plataforma Profissional">
+    <meta property="og:description" id="og-desc" content="A melhor plataforma para o seu negócio.">
+    <meta property="og:image" id="og-image" content="/img/logo-vwebtech.png">
+    <meta property="og:type" content="website">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base.css">
+    <!-- Dynamic Theme Link -->
+    <link id="theme-link" rel="stylesheet" href="themes/kids/theme.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <div class="top-bar">
-        <div class="top-bar-item">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 6H4V4h16v2zm0 2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H4v-8h16v8z"/></svg>
-            Entregamos em todo o <span>Brasil</span>
-        </div>
-        <div class="top-bar-item">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-7V9h7zM15 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
-            Até <span>12x no cartão</span>
-        </div>
-        <div class="top-bar-item">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            Compra <span>100% Segura</span>
-        </div>
-    </div>
+    <div id="layout-top-bar-slot"></div>
 
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">
-                <img src="img/logo.png" alt="Roda Gigante" class="site-logo">
-            </a>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="O que você está procurando?">
-                <button id="searchBtn">BUSCAR</button>
-            </div>
-            <div class="header-actions">
-                <!-- Shopping Cart Button -->
-                <button id="cartBtn" class="cart-toggle-btn">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                    </svg>
-                    <span id="cartBadge" class="cart-badge">0</span>
-                </button>
-            </div>
-        </div>
+    <header id="layout-header-slot">
+        <!-- Replaced by LayoutRenderer -->
     </header>
-    
 
+    <div id="main-layout-container">
+        <aside id="layout-sidebar-slot"></aside>
 
-    <div class="app-container">
-        <nav class="categories-container">
-            <ul class="category-list" id="categoryList">
-                <li class="category-item"><a href="#" class="category-link active" data-category="all">Todos</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Meninas">Meninas</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Meninos">Meninos</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Bebês">Bebês</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Calçados">Calçados</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Acessórios">Acessórios</a></li>
-                <li class="category-item"><a href="#" class="category-link" data-category="Ofertas">Ofertas</a></li>
-            </ul>
-        </nav>
+        <div class="app-container">
+            <div id="layout-banner-slot"></div>
+            <nav id="layout-nav-slot"></nav>
 
-        <main class="product-section">
-            <div class="section-header">
-                <h2 id="sectionTitle">Novidades</h2>
-            </div>
-            
-            <div id="productGrid" class="product-grid">
-                <!-- Products will be loaded here -->
-                <div class="loader">Carregando produtos...</div>
-            </div>
-            
-            <div id="pagination" class="pagination"></div>
-        </main>
-    </div>
-
-    <!-- Product Detail Modal -->
-    <div id="modalOverlay" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            
-            <div class="modal-img-container">
-                <button id="prevImg" class="gallery-nav prev">&lt;</button>
-                <img id="detailImage" src="" alt="">
-                <button id="nextImg" class="gallery-nav next">&gt;</button>
-                <div id="imageDots" class="image-dots"></div>
-            </div>
-            
-            <div class="modal-details">
-                <div class="modal-header">
-                    <span id="detailCode" class="product-code"></span>
-                    <h2 id="detailTitle"></h2>
+            <main class="product-section">
+                <div class="section-header">
+                    <h2 id="sectionTitle">Novidades</h2>
                 </div>
 
-                <div class="modal-price-card">
-                    <span id="detailPrice" class="price-main"></span>
-                    <div id="detailInstallments" class="product-installments"></div>
-                    <div id="detailPix" class="price-pix"></div>
+                <div id="productGrid" class="product-grid">
+                    <!-- Products will be loaded here -->
+                    <div class="loader">Buscando as melhores ofertas...</div>
                 </div>
 
-                <div id="detailStock" style="margin-bottom: 1.5rem;"></div>
-                
-                <a href="#" id="whatsappBuyBtn" class="whatsapp-btn-primary" target="_blank">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    COMPRAR PELO WHATSAPP
-                </a>
-
-                <a href="#" id="whatsappBtn" class="whatsapp-btn-secondary" target="_blank">
-                    Tire suas dúvidas conosco
-                </a>
-
-                <p id="detailDescription" style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"></p>
-            </div>
+                <div id="pagination" class="pagination"></div>
+            </main>
         </div>
     </div>
 
-    <!-- Cart Drawer -->
-    <div id="cartOverlay" class="cart-overlay"></div>
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="cart-header">
-            <h3>Meu Carrinho</h3>
-            <button id="closeCart" class="close-btn">&times;</button>
-        </div>
-        <div id="cartItems" class="cart-items">
-            <!-- Items will be loaded here -->
-            <div class="empty-cart-msg">Seu carrinho está vazio</div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total Estimado:</span>
-                <span id="cartTotalValue">R$ 0,00</span>
-            </div>
-            <button id="checkoutBtn" class="checkout-btn">
-                FINALIZAR PELO WHATSAPP
-            </button>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <!-- Floating Actions -->
-    <div class="floating-actions">
-        <button id="backToTopBtn" class="back-to-top" title="Voltar ao Topo">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-            </svg>
-        </button>
-        <button id="adminBtn" class="admin-float" title="Cadastrar Produto">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-        </button>
-        <a href="https://wa.me/554497387673?text=Olá! Estava navegando no seu catálogo e gostaria de tirar uma dúvida." 
-           class="whatsapp-float" target="_blank" title="Fale Conosco no WhatsApp">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-    </div>
-
-     <footer class="main-footer">
-        <div class="footer-logo-header">
-            <img src="img/logo.png" alt="Roda Gigante" class="footer-brand-logo">
-        </div>
-        
+    <footer class="site-footer">
         <div class="footer-container">
-            <!-- Column 1: Physical Address and Contacts -->
-            <div class="footer-column address-col">
-                <h3>Endereço</h3>
-                <div class="contact-info">
-                    <p><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> 
-                        Avenida Irmãos Pereira, 1062 sala 02 <br> Centro, Campo Mourão - PR</p>
-                    <p><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> 
-                        (44) 9 9738-7673</p>
-                    <p><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> 
-                        contato@rodagigante.com.br</p>
-                    <p><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg> 
-                        Segunda à Sexta 09:00 às 18:00 <br> Sábado 09:00 às 13:00</p>
+            <div class="footer-section">
+                <h4>Endereço</h4>
+                <div class="footer-info">
+                    <p>📍 Avenida Principal, 1000 - Centro</p>
+                    <p>📞 (44) 99999-9999</p>
+                    <p>✉️ contato@lojaexecutiva.com.br</p>
                 </div>
             </div>
-
-            <!-- Column 2: Social & About -->
-            <div class="footer-column links-col">
-                <h3>Siga a Roda Gigante</h3>
-                <div class="social-links">
-                    <a href="https://instagram.com/rodagigantecm" target="_blank"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2m-.2 2C5.1 4 4 5.1 4 7.6v8.8C4 18.9 5.1 20 7.6 20h8.8c2.5 0 3.6-1.1 3.6-3.6V7.6c0-2.5-1.1-3.6-3.6-3.6H7.6M12 7c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5m0 2c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3m5.2-.7c.5 0 .8.4.8.8s-.4.8-.8.8-.8-.4-.8-.8.4-.8.8-.8z"/></svg></a>
-                </div>
-                <h3>Saiba Mais</h3>
-                <ul>
-                    <li><a href="#">Fale Conosco</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Bottom Bar -->
-        <div class="footer-bottom">
-            <div class="bottom-container">
-                <div class="copyright-info">
-                    <p>Roda Gigante Moda Infantil. 2026</p>
-                    <p>Roda Gigante é uma empresa inscrita no CNPJ 00.000.000/0001-00</p>
-                </div>
-                <div class="trust-icons">
-                    <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
-                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard">
-                    <img src="https://img.icons8.com/color/48/000000/pix.png" alt="Pix">
-                    <div class="security-badges">
-                        <span class="badge safe">Compra 100% Segura</span>
-                        <span class="badge google">Google Safe Browsing</span>
-                    </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <div class="social-icons footer-info">
+                    <a href="#" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
-            
-            <!-- VWebTech Branding -->
-            <div class="vwebtech-footer-brand">
-                <span>Desenvolvido por</span>
-                <a href="https://vwebtech.com.br" target="_blank" title="VWebTech - Soluções Digitais">
-                    <img src="img/logo-vwebtech.png" alt="VWebTech">
-                </a>
+            <div class="footer-section created-by">
+                <h4 class="created-by-title">Created by</h4>
+                <div class="footer-info">
+                    <img src="/img/logo-vwebtech.png" alt="VWebTech Logo" class="vwebtech-logo">
+                </div>
             </div>
         </div>
     </footer>
@@ -227,11 +100,11 @@
                 <h2>Cadastrar Novo Produto</h2>
                 <p>Preencha as informações para adicionar à vitrine</p>
             </div>
-            
+
             <form id="adminForm" class="admin-form">
                 <div class="form-group">
                     <label for="pTitle">Título do Produto*</label>
-                    <input type="text" id="pTitle" name="title" placeholder="Ex: Vestido Rosa Luxo" required>
+                    <input type="text" id="pTitle" name="title" placeholder="Ex: Produto Premium" required>
                 </div>
 
                 <div class="form-row">
@@ -262,7 +135,6 @@
                         <select id="pCondition" name="condition">
                             <option value="Lançamento">Lançamento</option>
                             <option value="Novidade">Novidade</option>
-                            <option value="Coleção 2026">Coleção 2026</option>
                             <option value="Oferta">Oferta</option>
                         </select>
                     </div>
@@ -270,7 +142,8 @@
 
                 <div class="form-group">
                     <label for="pDescription">Descrição*</label>
-                    <textarea id="pDescription" name="description" rows="3" placeholder="Detalhes do produto..." required></textarea>
+                    <textarea id="pDescription" name="description" rows="3" placeholder="Detalhes do produto..."
+                        required></textarea>
                 </div>
 
                 <div class="form-group">
@@ -281,13 +154,111 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="submit-btn">SALVAR PRODUTO</button>
+                    <button type="submit" class="submit-btn" id="saveProductBtn">SALVAR PRODUTO</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
+
+    <!-- Theme Selector Modal -->
+    <div id="themeModal" class="modal-overlay">
+        <div class="modal-content theme-modal-content">
+            <span class="close-modal" id="closeThemeModal">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </span>
+            <div class="theme-modal-header">
+                <h2>Escolha o Tema</h2>
+                <p>Transforme a aparência da sua vitrine instantaneamente.</p>
+            </div>
+            <div id="themeGrid" class="theme-grid">
+                <!-- Themes will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content product-detail-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+
+            <div class="modal-img-container">
+                <img id="detailImage" src="" alt=""
+                    style="width: 100%; height: 100%; max-height: 500px; object-fit: cover; border-radius: 8px;">
+            </div>
+
+            <div class="modal-details">
+                <div class="modal-header">
+                    <h2 id="detailTitle" style="font-family: 'Outfit';"></h2>
+                </div>
+
+                <div class="modal-price-card">
+                    <span id="detailPrice" class="price-main"
+                        style="font-size: 2rem; font-weight: 800; color: var(--primary);"></span>
+                </div>
+
+                <div id="modalActionsContainer" style="margin-top: 2rem;"></div>
+
+                <p id="detailDescription"
+                    style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>Sua Seleção</h2>
+            <span class="close-cart" id="closeCart">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </span>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Items will be loaded here -->
+            <div class="empty-cart-msg">Seu carrinho está vazio</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Estimado:</span>
+                <span id="cartTotalValue">R$ 0,00</span>
+            </div>
+            <button id="checkoutBtn" class="checkout-btn">
+                FINALIZAR PELO WHATSAPP
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Actions -->
+    <div class="floating-actions"
+        style="position: fixed; bottom: 2rem; right: 2rem; display: flex; flex-direction: column; gap: 1rem; z-index: 2000;">
+        <button id="backToTopBtn" class="back-to-top" title="Voltar ao Topo"
+            style="width: 50px; height: 50px; border-radius: 50%; display: none; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); align-items: center; justify-content: center;">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+            </svg>
+        </button>
+        <button id="adminBtn" class="admin-float" title="Cadastrar Produto"
+            style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
+        </button>
+        <a href="https://wa.me/554497387673" class="whatsapp-float" target="_blank"
+            style="width: 60px; height: 60px; border-radius: 50%; background: #25d366; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+        </a>
+    </div>
+
+    <script src="js/api.js?v=2"></script>
+    <script src="js/app.js?v=2"></script>
 </body>
+
 </html>

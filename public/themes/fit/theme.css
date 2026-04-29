@@ -1,0 +1,141 @@
+:root {
+    --primary: #39ff14; /* Neon Green */
+    --primary-dark: #2eb810;
+    --primary-light: #8cff73;
+    --secondary: #212121; /* Dark Gray */
+    --secondary-dark: #111111;
+    --accent: #ff003c; /* Neon Red */
+    --success: #00e676; 
+    --background: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-main: #ffffff;
+    --text-muted: #aaaaaa;
+    --border: #3d3d3d;
+    --shadow: 0 10px 25px rgba(57, 255, 20, 0.15);
+    --font-main: 'Outfit', sans-serif;
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 35px;
+    --radius-full: 100px;
+}
+
+body {
+    background-image: 
+        radial-gradient(var(--secondary-dark) 0.5px, transparent 0.5px),
+        radial-gradient(var(--primary) 0.5px, transparent 0.5px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    background-color: var(--background);
+}
+
+header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 4px solid var(--primary-light);
+    border-radius: 0 0 40px 40px;
+}
+
+.logo img {
+    border-radius: 50%;
+    border: 3px solid var(--secondary);
+}
+
+.logo-text {
+    font-family: 'Outfit';
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.search-container input {
+    border-radius: 100px !important;
+    border: 3px solid var(--primary-light) !important;
+}
+
+.search-container button {
+    background: var(--secondary) !important;
+    border-radius: 100px !important;
+}
+
+/* Category Navigation (Bubble style) */
+.category-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category-link {
+    background: white !important;
+    border: 2px solid var(--primary-light) !important;
+    border-radius: 100px !important;
+    padding: 0.8rem 1.5rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 0 var(--primary-light);
+    transition: all 0.2s;
+}
+
+.category-link span {
+    font-size: 1.2rem;
+}
+
+.category-link:hover, .category-link.active {
+    transform: translateY(-4px);
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 4px 0 var(--primary-dark);
+}
+
+/* Product Cards (Playful Rounded) */
+.product-card.playful-rounded {
+    border-radius: 35px !important;
+    border: 8px solid white !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    background: white;
+}
+
+.product-card.playful-rounded:hover {
+    transform: scale(1.03) rotate(-1deg);
+    box-shadow: var(--shadow);
+}
+
+.product-image-wrapper {
+    border-radius: 25px !important;
+}
+
+.product-tag {
+    background: var(--secondary) !important;
+    color: white !important;
+    border-radius: 100px !important;
+    padding: 0.3rem 1rem !important;
+    font-weight: 800 !important;
+}
+
+.add-to-cart-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    border-radius: 100px !important;
+    font-weight: 900 !important;
+    border: none !important;
+}
+
+/* Hero Banner */
+.theme-hero-banner.playful-rounded {
+    border-radius: 40px;
+    height: 350px !important;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 30px;
+    color: var(--primary-dark);
+}
+
+.hero-cta {
+    background: var(--accent) !important;
+    color: var(--text-main) !important;
+    border-radius: 100px !important;
+    font-weight: 800 !important;
+}

@@ -1,106 +1,134 @@
 [
   {
-    "productId": "mnyo319ta67d1",
-    "sku": "RG-TA67D1",
-    "title": "Conjunto Marrom",
-    "price": 289.9,
-    "description": "Hello Summer",
-    "category": "Meninos",
-    "condition": "Coleção 2026",
-    "availableQuantity": 9,
+    "productId": "monarch-suit-001",
+    "sku": "MN-ST-001",
+    "title": "Terno Black Tie Slim",
+    "price": 3499.00,
+    "description": "Terno corte slim em lã fria super 120's. O ápice da elegância masculina para ocasiões que exigem presença.",
+    "category": "Ternos",
+    "condition": "Exclusivo",
+    "availableQuantity": 5,
+    "theme": "executive",
     "images": [
-      "/img/1776173906222-441640363-conjunto-marrom-masc.webp"
+      "/themes-assets/executive/suit_1.png"
     ]
   },
   {
-    "productId": "mnyo46upem0jz",
-    "sku": "RG-PEM0JZ",
-    "title": "Conjunto Branco",
-    "price": 289.9,
-    "description": "Grow",
-    "category": "Meninos",
-    "condition": "Coleção 2026",
+    "productId": "monarch-shoes-001",
+    "sku": "MN-SH-001",
+    "title": "Sapato Oxford Verniz",
+    "price": 1250.00,
+    "description": "Couro legítimo com acabamento em verniz premium. Solado em couro com construção blake.",
+    "category": "Sapatos",
+    "condition": "Premium",
     "availableQuantity": 12,
+    "theme": "executive",
     "images": [
-      "/img/1776173960111-263105211-conjunto-branco-masc.webp"
+      "/themes-assets/executive/shoes_1.png"
     ]
   },
   {
-    "productId": "mnyo5wl0yye52",
-    "sku": "RG-0YYE52",
-    "title": "Conjunto Amarelo",
-    "price": 249.9,
-    "description": "QvimByBaby",
-    "category": "Meninas",
-    "condition": "Coleção 2026",
-    "availableQuantity": 10,
+    "productId": "monarch-watch-001",
+    "sku": "MN-WT-001",
+    "title": "Relógio Monarch Heritage",
+    "price": 5800.00,
+    "description": "Movimento automático de alta precisão, caixa em aço inoxidável e vidro de safira.",
+    "category": "Acessórios Premium",
+    "condition": "Edição Limitada",
+    "availableQuantity": 3,
+    "theme": "executive",
     "images": [
-      "/img/1776174040115-722525908-conjunto-amarelo.webp"
+      "/themes-assets/executive/watch_1.png"
     ]
   },
   {
-    "productId": "mnyo7pnfj1ukv",
-    "sku": "RG-FJ1UKV",
-    "title": "Conjunto Morango",
-    "price": 189.9,
-    "description": "Conjunto Morango luxo",
-    "category": "Bebês",
-    "condition": "Coleção 2026",
-    "availableQuantity": 19,
+    "productId": "monarch-shirt-001",
+    "sku": "MN-SR-001",
+    "title": "Camisa Egípcia Branca",
+    "price": 450.00,
+    "description": "Algodão egípcio de fibra longa. Toque sedoso e caimento impecável.",
+    "category": "Camisas Sociais",
+    "condition": "Essencial",
+    "availableQuantity": 20,
+    "theme": "executive",
     "images": [
-      "/img/1776174124442-700708622-conjunto-rosa.webp"
+      "/themes-assets/executive/shirt_1.png"
     ]
   },
   {
-    "productId": "mnyo97aiu67cw",
-    "sku": "RG-IU67CW",
-    "title": "Conjunto Rosa",
-    "price": 189.9,
-    "description": "Rosa com flores brancas",
-    "category": "Bebês",
-    "condition": "Coleção 2026",
-    "availableQuantity": 7,
+    "productId": "monarch-blazer-001",
+    "sku": "MN-BL-001",
+    "title": "Blazer Moderno em Lã Fria",
+    "price": 2150.00,
+    "description": "Blazer em lã fria premium. Caimento perfeito, corte moderno, em tom escuro. Ideal para combinar autoridade com versatilidade.",
+    "category": "Blazers",
+    "condition": "Novo",
+    "availableQuantity": 8,
+    "theme": "executive",
     "images": [
-      "/img/1776174193961-517488681-conjunto-rosa-com-flor.webp"
+      "/themes-assets/executive/blazer_1.png"
     ]
   },
   {
-    "productId": "mnyoc4vjv7znx",
-    "sku": "RG-JV7ZNX",
-    "title": "Copo Infantil",
-    "price": 89.9,
-    "description": "Copo infantil 180ml",
-    "category": "Acessórios",
-    "condition": "Novidade",
-    "availableQuantity": 30,
-    "images": [
-      "/img/1776174330798-829978052-copinho.jpg"
-    ]
-  },
-  {
-    "productId": "mnyocv12ya7bl",
-    "sku": "RG-2YA7BL",
-    "title": "Mochila Infantil",
-    "price": 179.9,
-    "description": "Mochila infantil linda",
-    "category": "Acessórios",
-    "condition": "Novidade",
+    "productId": "monarch-tie-001",
+    "sku": "MN-TI-001",
+    "title": "Gravata de Seda Pura",
+    "price": 380.00,
+    "description": "Gravata confeccionada 100% em seda italiana. Textura sutil e toque macio, para finalizar o visual com elegância impecável.",
+    "category": "Gravatas",
+    "condition": "Essencial",
     "availableQuantity": 15,
+    "theme": "executive",
     "images": [
-      "/img/1776174364693-525007909-mochila.jpg"
+      "/themes-assets/executive/tie_1.png"
     ]
   },
   {
-    "productId": "mnyody14m5vjd",
-    "sku": "RG-4M5VJD",
-    "title": "Kit Mochila + Copo",
-    "price": 249.9,
-    "description": "Kit copo 180ml + mochila",
-    "category": "Ofertas",
-    "condition": "Novidade",
+    "productId": "kids-toy-001",
+    "sku": "KD-TY-001",
+    "title": "Ursinho de Pelúcia Fofinho",
+    "price": 89.90,
+    "description": "Pelúcia antialérgica, super macia e segura para bebês.",
+    "category": "Brinquedos",
+    "condition": "Novo",
+    "availableQuantity": 30,
+    "theme": "kids",
+    "images": ["/themes-assets/kids/toy.png"]
+  },
+  {
+    "productId": "fit-racket-001",
+    "sku": "FT-RK-001",
+    "title": "Raquete Beach Tennis Carbono",
+    "price": 850.00,
+    "description": "Raquete de alta performance para jogadores exigentes. 100% carbono.",
+    "category": "Equipamentos",
+    "condition": "Performance",
     "availableQuantity": 10,
-    "images": [
-      "/img/1776174415238-114372421-kit-copo-mochila.jpg"
-    ]
+    "theme": "fit",
+    "images": ["/themes-assets/fit/racket.png"]
+  },
+  {
+    "productId": "market-earphones-001",
+    "sku": "MK-EP-001",
+    "title": "Fone Bluetooth Pro",
+    "price": 199.99,
+    "description": "Cancelamento de ruído ativo, bateria para 24 horas e áudio premium.",
+    "category": "Eletrônicos",
+    "condition": "Promoção",
+    "availableQuantity": 50,
+    "theme": "market",
+    "images": ["/themes-assets/market/earphones.png"]
+  },
+  {
+    "productId": "gifts-makeup-001",
+    "sku": "GF-MK-001",
+    "title": "Paleta de Sombras Neon",
+    "price": 25.00,
+    "description": "Cores super pigmentadas para você brilhar na festa!",
+    "category": "Maquiagens",
+    "condition": "Pop",
+    "availableQuantity": 100,
+    "theme": "gifts",
+    "images": ["/themes-assets/gifts/makeup.png"]
   }
 ]

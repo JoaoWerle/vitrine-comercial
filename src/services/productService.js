@@ -20,8 +20,13 @@ class ProductService {
   /**
    * Get filtered products with pagination
    */
-  async getProducts(page = 0, pageSize = 24, search = '', category = 'all') {
+  async getProducts(page = 0, pageSize = 24, search = '', category = 'all', theme = '') {
     let products = await this.getAllProducts();
+
+    // Filter by Theme
+    if (theme) {
+      products = products.filter(p => p.theme === theme);
+    }
 
     // Filter by Category
     if (category && category !== 'all') {

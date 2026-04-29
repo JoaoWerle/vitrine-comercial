@@ -1,0 +1,49 @@
+[
+  {
+    "id": "executive",
+    "name": "MONARCH",
+    "description": "Luxo, autoridade e sofisticação em alfaiataria moderna.",
+    "layoutType": "minimalist-premium",
+    "logoTitle": "MONARCH",
+    "tagline": "Elegância que impõe respeito | Alfaiataria moderna para homens de presença",
+    "accentColor": "#D4AF37",
+    "categories": ["Ternos", "Blazers", "Camisas Sociais", "Sapatos", "Gravatas", "Acessórios Premium"]
+  },
+  {
+    "id": "kids",
+    "name": "Kids",
+    "description": "Cores suaves e amigáveis para moda infantil e bebês.",
+    "layoutType": "playful-rounded",
+    "logoTitle": "Kids World",
+    "tagline": "Novidades Fofinhas | Galeria do Estilo",
+    "accentColor": "#ff9a9e"
+  },
+  {
+    "id": "fit",
+    "name": "Fit",
+    "description": "Energia e movimento para moda fitness e academia.",
+    "layoutType": "playful-rounded",
+    "logoTitle": "Fit Zone",
+    "tagline": "Alta Performance | Energia Total",
+    "accentColor": "#39ff14"
+  },
+  {
+    "id": "gifts",
+    "name": "Pop Presentes",
+    "description": "Achadinhos, maquiagens e presentes divertidos pelo menor preço.",
+    "layoutType": "playful-rounded",
+    "logoTitle": "Pop Presentes",
+    "tagline": "Achadinhos da 25 | Preço Baixo Todo Dia",
+    "accentColor": "#b5179e",
+    "categories": ["Maquiagens", "Bijuterias", "Ursinhos", "Acessórios", "Kits Presente"]
+  },
+  {
+    "id": "market",
+    "name": "Market",
+    "description": "Foco em promoções e variedades com visual moderno e amigável.",
+    "layoutType": "playful-rounded",
+    "logoTitle": "Market Hub",
+    "tagline": "Ofertas do Dia | Variedades Incríveis",
+    "accentColor": "#3a86ff"
+  }
+]

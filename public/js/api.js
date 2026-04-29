@@ -4,10 +4,11 @@
 const API = {
     baseUrl: '/api',
 
-    async getProducts(page = 0, search = '', category = 'all') {
+    async getProducts(page = 0, search = '', category = 'all', theme = '') {
         try {
             const categoryQuery = category !== 'all' ? `&category=${encodeURIComponent(category)}` : '';
-            const response = await fetch(`${this.baseUrl}/products?page=${page}&search=${encodeURIComponent(search)}${categoryQuery}`);
+            const themeQuery = theme ? `&theme=${encodeURIComponent(theme)}` : '';
+            const response = await fetch(`${this.baseUrl}/products?page=${page}&search=${encodeURIComponent(search)}${categoryQuery}${themeQuery}`);
             if (!response.ok) throw new Error('Erro ao buscar produtos');
             return await response.json();
         } catch (error) {

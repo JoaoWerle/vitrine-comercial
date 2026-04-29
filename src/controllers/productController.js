@@ -3,8 +3,8 @@ const imageService = require('../services/imageService');
 
 const getProducts = async (req, res) => {
   try {
-    const { page = 0, limit = 24, search = '', category = 'all' } = req.query;
-    const products = await productService.getProducts(parseInt(page), parseInt(limit), search, category);
+    const { page = 0, limit = 24, search = '', category = 'all', theme = '' } = req.query;
+    const products = await productService.getProducts(parseInt(page), parseInt(limit), search, category, theme);
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch products', message: error.message });
@@ -36,7 +36,7 @@ const getProductImages = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { title, price, description, category, condition, availableQuantity } = req.body;
+    const { title, price, description, category, condition, availableQuantity, theme } = req.body;
     let images = [];
     
     if (req.file) {
@@ -49,6 +49,7 @@ const createProduct = async (req, res) => {
       description,
       category,
       condition,
+      theme: theme || 'kids',
       availableQuantity: parseInt(availableQuantity) || 0,
       images
     };

@@ -58,7 +58,7 @@ class LayoutRenderer {
         // Re-attach listeners because we replaced the HTML
         document.getElementById('themeToggleBtn').onclick = handlers.onThemeToggle;
         document.getElementById('cartBtn').onclick = handlers.onCartToggle;
-        
+
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         if (searchBtn) {
@@ -70,10 +70,10 @@ class LayoutRenderer {
     static renderNavigation(theme, categories, currentCategory, onCategoryChange) {
         const navSlot = document.getElementById('layout-nav-slot');
         const sidebarSlot = document.getElementById('layout-sidebar-slot');
-        
+
         const isSidebar = theme.layoutType === 'utility-sidebar';
         const targetSlot = isSidebar ? sidebarSlot : navSlot;
-        
+
         // Clear both slots
         navSlot.innerHTML = '';
         sidebarSlot.innerHTML = '';
@@ -139,10 +139,10 @@ class LayoutRenderer {
         const price = typeof product.price === 'number' ? product.price : 0;
         const priceFormatted = price > 0 ? price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'Sob consulta';
         const images = product.images || [];
-        
+
         const card = document.createElement('div');
         card.className = `product-card ${theme.layoutType}`;
-        
+
         card.innerHTML = `
             <div class="product-tag">${product.condition || 'Novidade'}</div>
             <div class="product-image-wrapper">
@@ -178,7 +178,7 @@ class LayoutManager {
         this.themes = [];
         this.currentThemeId = localStorage.getItem('vitrine_theme') || 'kids';
         this.themeLink = document.getElementById('theme-link');
-        
+
         // Cart and State
         this.cart = JSON.parse(localStorage.getItem('rodagigante_cart')) || [];
         this.currentPage = 0;
@@ -246,7 +246,9 @@ class LayoutManager {
         this.currentThemeId = themeId;
         localStorage.setItem('vitrine_theme', themeId);
         this.themeLink.href = `themes/${themeId}/theme.css`;
-        
+
+        document.body.className = `layout-${theme.layoutType} theme-${theme.id}`;
+
         // Update categories from theme config
         this.categories = theme.categories || ['Meninas', 'Meninos', 'Bebês', 'Calçados', 'Acessórios', 'Ofertas'];
 
@@ -259,13 +261,13 @@ class LayoutManager {
         });
         LayoutRenderer.renderNavigation(theme, this.categories, this.currentCategory, (cat) => this.handleCategoryChange(cat));
         LayoutRenderer.renderBanner(theme);
-        
+
         // Update branding/title
         document.title = theme.logoTitle + " | " + theme.tagline.split('|')[0];
         document.getElementById('og-title')?.setAttribute('content', document.title);
         document.getElementById('og-desc')?.setAttribute('content', theme.description);
         document.getElementById('og-image')?.setAttribute('content', `${window.location.origin}/themes-assets/${theme.id}/banner.png`);
-        
+
         // Reload products for new grid/card style
         this.loadProducts();
         this.updateCartUI();
@@ -313,11 +315,11 @@ class LayoutManager {
                 <div class="skeleton-text short"></div>
             </div>
         `).join('');
-        
+
         try {
             const theme = this.themes.find(t => t.id === this.currentThemeId);
             const result = await API.getProducts(this.currentPage, this.currentSearch, this.currentCategory, this.currentThemeId);
-            
+
             grid.innerHTML = '';
             if (!result.data || result.data.length === 0) {
                 grid.innerHTML = '<div class="no-results">Nenhum produto encontrado.</div>';
@@ -326,14 +328,14 @@ class LayoutManager {
 
             result.data.forEach(product => {
                 const card = LayoutRenderer.renderProductCard(
-                    product, 
-                    theme, 
+                    product,
+                    theme,
                     (p) => this.addToCart(p),
                     (p) => this.showProductDetail(p)
                 );
                 grid.appendChild(card);
             });
-            
+
             this.renderPagination(result.totalCount);
         } catch (error) {
             grid.innerHTML = '<div class="error-msg">Erro ao carregar produtos.</div>';
@@ -364,7 +366,7 @@ class LayoutManager {
         const exists = this.cart.find(item => (item.sku || item.productId) === id);
         if (!exists) this.cart.push({ ...product, quantity: 1 });
         else exists.quantity++;
-        
+
         localStorage.setItem('rodagigante_cart', JSON.stringify(this.cart));
         this.updateCartUI();
         this.toggleCart();
@@ -374,7 +376,7 @@ class LayoutManager {
         const badge = document.getElementById('cartBadge');
         const itemsContainer = document.getElementById('cartItems');
         const totalVal = document.getElementById('cartTotalValue');
-        
+
         const count = this.cart.reduce((s, i) => s + i.quantity, 0);
         if (badge) {
             badge.innerText = count;
@@ -416,8 +418,29 @@ class LayoutManager {
     }
 
     handleCheckout() {
+        if (this.cart.length === 0) return;
+
         let msg = "Olá! Gostaria de pedir:\n\n";
-        this.cart.forEach(item => msg += `- ${item.title} (${item.quantity}x)\n`);
+        let total = 0;
+
+        this.cart.forEach(item => {
+            const p = item.price || 0;
+            const subtotal = p * item.quantity;
+            total += subtotal;
+
+            const priceStr = p.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const subtotalStr = subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            msg += `*${item.title}*\n`;
+            msg += `   Quantidade: ${item.quantity}x\n`;
+            msg += `   Valor unitário: ${priceStr}\n`;
+            msg += `   Subtotal do item: ${subtotalStr}\n\n`;
+        });
+
+        const totalStr = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        msg += `*TOTAL DO PEDIDO: ${totalStr}*\n\n`;
+        msg += `Aguardo o retorno para alinhar o pagamento e a entrega!`;
+
         window.open(`https://wa.me/554497387673?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -468,9 +491,31 @@ class LayoutManager {
         document.getElementById('detailDescription').innerText = product.description || '';
         document.getElementById('detailPrice').innerText = (product.price || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         document.getElementById('detailImage').src = encodeURI(product.images[0]);
-        
+
+        // Populate Meta Info (Stock & Category)
+        const catEl = document.getElementById('detailCategory');
+        if (catEl) catEl.innerText = product.category || 'Geral';
+
+        const stockContainer = document.getElementById('detailStock');
+        const stockEl = document.getElementById('detailStockText');
+        const qty = product.availableQuantity || 0;
+        if (stockEl && stockContainer) {
+            if (qty > 0) {
+                stockEl.innerText = `${qty} unidades em estoque`;
+                stockContainer.style.color = 'var(--success, #2e7d32)';
+            } else {
+                stockEl.innerText = 'Esgotado no momento';
+                stockContainer.style.color = 'var(--accent, #d32f2f)';
+            }
+        }
+
         const actionContainer = document.getElementById('modalActionsContainer');
-        actionContainer.innerHTML = `<button class="modal-add-cart-btn">ADICIONAR AO CARRINHO</button>`;
+        actionContainer.innerHTML = `
+            <button class="modal-add-cart-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                ADICIONAR AO CARRINHO
+            </button>
+        `;
         actionContainer.querySelector('button').onclick = () => {
             this.addToCart(product);
             overlay.style.display = 'none';

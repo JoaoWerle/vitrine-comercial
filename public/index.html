@@ -10,7 +10,7 @@
     <meta property="og:image" id="og-image" content="/img/logo-vwebtech.png">
     <meta property="og:type" content="website">
     <!-- Base Styles -->
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base.css?v=3">
     <!-- Dynamic Theme Link -->
     <link id="theme-link" rel="stylesheet" href="themes/kids/theme.css">
 
@@ -197,10 +197,18 @@
                         style="font-size: 2rem; font-weight: 800; color: var(--primary);"></span>
                 </div>
 
-                <div id="modalActionsContainer" style="margin-top: 2rem;"></div>
+                <div class="modal-meta-info" style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <span id="detailCategory" style="padding: 4px 12px; border-radius: 20px; background: var(--background); font-size: 0.85rem; font-weight: 600; color: var(--text-main); border: 1px solid var(--border);"></span>
+                    <span id="detailStock" style="font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4V7h2v6h-2z"/></svg>
+                        <span id="detailStockText"></span>
+                    </span>
+                </div>
 
                 <p id="detailDescription"
-                    style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"></p>
+                    style="margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;"></p>
+
+                <div id="modalActionsContainer" style="margin-top: 2.5rem;"></div>
             </div>
         </div>
     </div>
@@ -257,8 +265,8 @@
         </a>
     </div>
 
-    <script src="js/api.js?v=2"></script>
-    <script src="js/app.js?v=2"></script>
+    <script src="js/api.js?v=3"></script>
+    <script src="js/app.js?v=3"></script>
 </body>
 
 </html>

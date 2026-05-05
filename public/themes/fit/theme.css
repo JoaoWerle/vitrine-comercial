@@ -65,6 +65,7 @@ header {
 
 .category-link {
     background: white !important;
+    color: var(--secondary-dark) !important;
     border: 2px solid var(--primary-light) !important;
     border-radius: 100px !important;
     padding: 0.8rem 1.5rem !important;

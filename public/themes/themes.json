@@ -16,7 +16,8 @@
     "layoutType": "playful-rounded",
     "logoTitle": "Kids World",
     "tagline": "Novidades Fofinhas | Galeria do Estilo",
-    "accentColor": "#ff9a9e"
+    "accentColor": "#ff9a9e",
+    "categories": ["Meninas", "Meninos", "Bebês", "Calçados", "Brinquedos", "Acessórios"]
   },
   {
     "id": "fit",
@@ -25,7 +26,8 @@
     "layoutType": "playful-rounded",
     "logoTitle": "Fit Zone",
     "tagline": "Alta Performance | Energia Total",
-    "accentColor": "#39ff14"
+    "accentColor": "#39ff14",
+    "categories": ["Roupas", "Calçados", "Equipamentos", "Suplementos", "Acessórios"]
   },
   {
     "id": "gifts",
@@ -44,6 +46,7 @@
     "layoutType": "playful-rounded",
     "logoTitle": "Market Hub",
     "tagline": "Ofertas do Dia | Variedades Incríveis",
-    "accentColor": "#3a86ff"
+    "accentColor": "#3a86ff",
+    "categories": ["Eletrônicos", "Casa", "Acessórios", "Moda", "Promoções"]
   }
 ]
